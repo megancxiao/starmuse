@@ -19,7 +19,7 @@ module.exports = {
   },
   server: {
     opt: {
-      port: 7777
+      port: process.env.PORT
     }
   },
   uglify: {
