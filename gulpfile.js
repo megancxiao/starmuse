@@ -9,7 +9,7 @@ var rename = require('gulp-rename');
 
 // Sass compilation
 
-var sass = require('gulp-sass');
+var sass = require('gulp-sass')(require ('sass'));
 
 gulp.task('sass', function () {
   gulp.src(config.sass.src)
@@ -44,8 +44,8 @@ gulp.task('connect', function() {
 // Watchers
 
 gulp.task('watch', function () {
-  gulp.watch(config.sass.src, ['sass']);
-  gulp.watch(config.uglify.src, ['js']);
+  gulp.watch(config.sass.src, gulp.series('sass'));
+  gulp.watch(config.uglify.src, gulp.series('js'));
 });
 
-gulp.task('default', gulp.series('connect','watch', 'sass', 'js'));
+gulp.task('default', gulp.parallel('connect', 'watch', 'sass', 'js'));

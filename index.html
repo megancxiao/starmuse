@@ -2,25 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>**starmuse**</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Music created by holding a musical staff up to the stars.">
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
 
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
 
   <div id="main" class="container">
-    <div id="stars"></div>
-    <img id="sky" 
-      src="img/nightsky.png"
-      height=100%
-      width=1520
-      />
+
+    <div id="world" class="world">
+
+      <div id="stars">
+        <div id="canvas"></div>
+        <div id="bbox">
+        </div>
+      </div>
+
+    <img src="img/trees.png" height="100%" width="100%"/>
+    
+    <div class="instructions">
+      Explore the night sky.
+    </div>
+
+    <div class="status">
+      <span class="ra"></span> <span class="divider">|</span> <span class="dec"></span>
+    </div>
 
   </div>
-  <script src="js/app.js"></script>
+
+  </div>
+
+  <script type="x-shader/x-vertex" id="vertexshader">
+    attribute float size;
+    attribute vec3 customColor;
+    varying vec3 vColor;
+    void main() {
+      vColor = customColor;
+      vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+      gl_PointSize = size * ( 300.0 / -mvPosition.z );
+      gl_Position = projectionMatrix * mvPosition;
+    }
+  </script>
+  <script type="x-shader/x-fragment" id="fragmentshader">
+    uniform vec3 color;
+    uniform sampler2D texture;
+    varying vec3 vColor;
+    void main() {
+      gl_FragColor = vec4( color * vColor, 1.0 );
+      gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
+    }
+  </script>
+  <script src="js/app.min.js"></script>
 
 </body>
 </html>
