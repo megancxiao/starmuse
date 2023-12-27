@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/megancxiao/starsounds.git"
+    "url": "git+https://github.com/megancxiao/starmuse.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/megancxiao/starsounds/issues"
+    "url": "https://github.com/megancxiao/starmuse/issues"
   },
-  "homepage": "https://github.com/megancxiao/starsounds#readme",
+  "homepage": "https://github.com/megancxiao/starmuse",
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-connect": "^5.7.0",
