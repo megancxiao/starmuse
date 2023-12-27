@@ -852,7 +852,13 @@ this.domElement=document.createElementNS("http://www.w3.org/1999/xhtml","canvas"
     var d = UTIL.normDegrees(degrees);
     var h = Math.floor(d / 15);
     var m = Math.floor(d % 15 / 15 * 60);
-    return h + 'h ' + m + 'm';
+    if (m < 10) {
+      m = "0" + m;
+    }
+    if (h < 10) {
+      h = "0" + h;
+    }
+    return h + ':' + m;
   };
 
   UTIL.lerp = function(a, b, percent) {
