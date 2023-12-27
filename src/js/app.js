@@ -92,7 +92,6 @@ var App = (function() {
   App.prototype.onPanStart = function(){
     $('.instructions').removeClass('active');
     this.stars.onPanStart();
-    this.music.onPanStart();
   };
 
   App.prototype.onReady = function(){

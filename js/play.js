@@ -1477,13 +1477,11 @@ var PlayApp = (function() {
     this.seqStart = 0;
     this.lastActiveStar = -1;
 
-    // wait for stars and music to be loaded
+    // wait for stars to be loaded
     this.queueSubscriptions(['sequence.loaded', 'stars.loaded']);
 
-    // load stars and music
+    // load stars
     this.loadSequence(this.opt.sequence);
-    this.music = new PlayMusic($.extend(this.opt.harmony, {recordMode: this.recordMode}));
-    this.harmony = new PlayHarmony($.extend(this.opt.harmony, {recordMode: this.recordMode}));
     this.stars = new PlayStars($.extend(this.opt.harmony, {recordMode: this.recordMode}));
   };
 
@@ -1536,7 +1534,6 @@ var PlayApp = (function() {
 
     $.each(subs, function(i, s){
       $.subscribe(s, function(e, data){
-        console.log(data.message);
         loaded++;
         if (loaded >= total) _this.onReady();
       });
@@ -1550,7 +1547,6 @@ var PlayApp = (function() {
     var percent = elapsedMs / this.opt.totalMs;
     percent = UTIL.lim(percent, 0, 1);
 
-    if (!this.recordMode) this.harmony.render(percent);
     if (!this.recordMode) this.renderSequence(percent);
     this.stars.render(percent);
 
