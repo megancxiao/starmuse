@@ -18,9 +18,7 @@ module.exports = {
     opt: {outputStyle: 'compressed'}
   },
   server: {
-    opt: {
-      port: process.env.PORT || 7777
-    }
+    port: process.env.PORT || 7777
   },
   uglify: {
     dest: publicAssets + '/js/',
